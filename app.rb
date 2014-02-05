@@ -45,8 +45,8 @@ post '/wechat' do
     "ToUserName" => req_message["FromUserName"],
     "FromUserName" => req_message["ToUserName"],
     "CreateTime" => Time.now.to_i, # unix timestamp
-    "MsgType" => translate(query),
-    "Content" => req_message["Content"].reverse
+    "MsgType" => 'text',
+    "Content" => translate(query)
   }.to_xml(:root => 'xml')
 
 end
