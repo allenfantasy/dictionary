@@ -40,13 +40,16 @@ post '/wechat' do
   # RESPONSE
 
   query = req_message["Content"]
+  result = translate(query).first
+  logger.info "RESULT_TYPE: #{result.class}"
+  logger.info "RESULT: #{result}"
 
   res_message = {
     "ToUserName" => req_message["FromUserName"],
     "FromUserName" => req_message["ToUserName"],
     "CreateTime" => Time.now.to_i, # unix timestamp
     "MsgType" => 'text',
-    "Content" => translate(query)
+    "Content" => result
   }.to_xml(:root => 'xml')
 
 end
