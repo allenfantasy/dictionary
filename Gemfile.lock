@@ -3,6 +3,7 @@ GEM
   specs:
     backports (3.5.0)
     multi_json (1.8.4)
+    multi_xml (0.5.3)
     rack (1.5.2)
     rack-protection (1.5.2)
       rack
@@ -25,5 +26,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  multi_xml
   sinatra
   sinatra-contrib
