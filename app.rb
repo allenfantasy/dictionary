@@ -25,7 +25,7 @@ end
 post '/wechat' do
   logger.info "------POST------"
   logger.info params
-  if authenticated?
+  if authenticated?(params)
     # reply logic
   else
     # forbidden logic
