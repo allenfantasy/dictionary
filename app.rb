@@ -8,5 +8,9 @@ end
 get '/' do
   logger.info "------PARAMS------"
   logger.info params
-  "Hello Sinatra!"
+  if params["echostr"]
+    params["echostr"]
+  else
+    "Hello Sinatra!"
+  end
 end
