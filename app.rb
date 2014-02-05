@@ -42,7 +42,7 @@ post '/wechat' do
     "FromUserName" => req_message["ToUserName"],
     "CreateTime" => Time.now.to_i, # unix timestamp
     "MsgType" => "text",
-    "Content" => "hello back"
+    "Content" => req_message["Content"].reverse
   }.to_xml(:root => 'xml')
 
 end
