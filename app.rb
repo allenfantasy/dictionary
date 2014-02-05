@@ -28,7 +28,8 @@ post '/wechat' do
   #logger.info "REQUEST CLASS: #{request.class}" # Sinatra::Request < Rack::Request
   #logger.info "BODY: #{request.body}" # StringIO < Data < Object
   #logger.info "BODY.READ: #{request.body.read}" # String
-  logger.info "HASH: #{hash = MultiXml.parse(xml)['xml']}"
+  xml_str = request.body.read
+  logger.info "HASH: #{hash = MultiXml.parse(xml_str)['xml']}"
   authorize!
 
   logger.info "PASSED"
