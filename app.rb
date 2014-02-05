@@ -5,6 +5,7 @@ require 'sinatra/devise'
 require 'sinatra/reloader' if development?
 require 'active_support/all'
 require 'multi_xml'
+require 'builder'
 
 configure do
   enable :logging
