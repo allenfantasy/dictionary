@@ -2,6 +2,7 @@ $:.unshift File.expand_path("../lib", __FILE__)
 
 require 'sinatra'
 require 'sinatra/devise'
+require 'sinatra/youdao_translator'
 require 'sinatra/reloader' if development?
 require 'active_support/all'
 require 'multi_xml'
@@ -37,11 +38,14 @@ post '/wechat' do
   logger.info "PASSED"
 
   # RESPONSE
+
+  query = req_message["Content"]
+
   res_message = {
     "ToUserName" => req_message["FromUserName"],
     "FromUserName" => req_message["ToUserName"],
     "CreateTime" => Time.now.to_i, # unix timestamp
-    "MsgType" => "text",
+    "MsgType" => translate(query),
     "Content" => req_message["Content"].reverse
   }.to_xml(:root => 'xml')
 

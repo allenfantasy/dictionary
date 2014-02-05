@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require 'httparty'
 
 module Sinatra
   module Devise
@@ -17,6 +18,5 @@ module Sinatra
     end
   end
 
-  #register Devise
   helpers Devise
 end
