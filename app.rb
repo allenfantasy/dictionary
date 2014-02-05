@@ -3,6 +3,7 @@ $:.unshift File.expand_path("../lib", __FILE__)
 require 'sinatra'
 require 'sinatra/devise'
 require 'sinatra/reloader' if development?
+require 'active_support/all'
 require 'multi_xml'
 
 configure do
@@ -28,11 +29,19 @@ post '/wechat' do
   #logger.info "REQUEST CLASS: #{request.class}" # Sinatra::Request < Rack::Request
   #logger.info "BODY: #{request.body}" # StringIO < Data < Object
   #logger.info "BODY.READ: #{request.body.read}" # String
-  xml_str = request.body.read
-  logger.info "HASH: #{hash = MultiXml.parse(xml_str)['xml']}"
+  req_message = MultiXml.parse(request.body.read)['xml']
+  logger.info "REQ: #{req_message}"
   authorize!
 
   logger.info "PASSED"
-  200
-  # TODO: send something back
+
+  # RESPONSE
+  res_message = {
+    "ToUserName" => req_message["FromUserName"],
+    "FromUserName" => req_message["ToUserName"],
+    "CreateTime" => Time.now.to_i, # unix timestamp
+    "MsgType" => "text",
+    "Content" => "hello back"
+  }.to_xml(:root => 'xml')
+
 end
