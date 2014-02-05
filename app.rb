@@ -1,10 +1,12 @@
 require 'sinatra'
 require 'sinatra/reloader' if development?
 
-#class Application < Sinatra::Base
-  #register Sinatra::Reloader
+configure do
+  enable :logging
+end
 
-  get '/' do
-    "Hello Sinatra!"
-  end
-#end
+get '/' do
+  logger.info "------PARAMS------"
+  logger.info params
+  "Hello Sinatra!"
+end
