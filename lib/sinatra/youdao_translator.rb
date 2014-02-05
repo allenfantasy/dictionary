@@ -3,7 +3,7 @@ module Sinatra
 
     def translate(query)
       # TODO: filtering query?
-      ydclient = YauDaoClient.new
+      ydclient = YouDaoClient.new
       result = ydclient.search(query)
       result["translation"]
     end
