@@ -5,3 +5,4 @@ gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'multi_xml'
 gem 'activesupport'
+gem 'builder' # for xml
